@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/CSS/style.css">
+      <script type="text/javascript" src="/static/js/d3/d3.js"></script>
+      <script src="//d3js.org/d3-scale-chromatic.v0.3.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+    <title>Dashboard</title>
+    <style>
+      body{
+        background: none !important;
+        color: black !important;
+      }
+      #left-col.column{
+        background: none !important;
+      }
+      li{
+        background: none !important;
+        color: black !important;
+      }
+      p{
+        background: none !important;
+        color: black !important;
+      }
+      i,h2,h3,h4{
+        background: none !important;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+
+  <a href="/">
+    <img src = "/static/CSS/images/text_head.png" width="100%">
+  </a>
+
+  <br>
+  <br>
+
+  {% block body %}
+
+<div class="row" style="background: none !important;">
+  <h2><i>Perceived Psychological Traits</i></h2>
+
+  <br>
+   <br>
+  <div class="column_home" id="left-col" align="center" style="background: none !important;">
+    <div style="background: none !important;">
+    <div class="legend1" style="background: none !important;">
+    <div class="legend1" style="background: none !important;"> <p class="country-name"><span class="key-dot you"></span>You</p> </div>
+    <div class="legend1" style="background: none !important;"> <p class="country-name"><span class="key-dot others"></span>Other candidates</p> </div>
+    </div>
+      <div id="histo" style="background: none !important;"></div>
+    </div>
+  </div>
+
+  <div class="column_home" id="left-col" align="center" style="background: none !important;">
+      <br>
+      <p>Your most visible trait is : </p>
+        <br>
+        <h4> {{trait}} </h4>
+        <br>
+        <div class="parent" style="background: none !important;">
+          <p>Psychological Traits : </p>
+            <ul align="left" style="background: none !important;">
+            <li>Extraversion : {{traits[0]}}%</li>
+            <li>Neuroticism : {{traits[1]}}%</li>
+            <li>Agreeableness : {{traits[2]}}%</li>
+            <li>Conscientiousness : {{traits[3]}}%</li>
+            <li>Openness : {{traits[4]}}%</li>
+          </ul>
+      </div>
+      <br>
+    <br>
+  </div>
+
+  <div class="column_home" id="left-col" align="center" style="background: none !important;">
+    <div class="parent" style="background: none !important;">
+        <p>Most common words : </p>
+          <ul align="left" style="background: none !important;">
+             {% for el in common_words %}
+                <li>{{el}}</li>
+              {% endfor %}
+          </ul>
+      </div>
+  </div>
+</div>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <hr width="50%" style="margin-left: 25%; margin-right:25%">
+  <br>
+  <br>
+
+
+ <div class="row">
+  <h2><i>Other candidates</i></h2>
+
+  <br>
+   <br>
+  <div class="column_home" id="left-col" align="center" style="background: none !important;">
+    <div style="background: none !important;">
+      <div id="hist_density" style="background: none !important;"></div>
+    </div>
+  </div>
+
+  <div class="column_home" id="left-col" align="center" style="background: none !important;">
+      <br>
+      <p>Their most visible trait is : </p>
+        <br>
+        <h4> {{trait_others}} </h4>
+        <br>
+        <div class="parent" style="background: none !important;">
+          <p>Psychological Traits : </p>
+            <ul align="left" style="background: none !important;">
+            <li>Extraversion : {{probas_others[0]}}%</li>
+            <li>Neuroticism : {{probas_others[1]}}%</li>
+            <li>Agreeableness : {{probas_others[2]}}%</li>
+            <li>Conscientiousness : {{probas_others[3]}}%</li>
+            <li>Openness : {{probas_others[4]}}%</li>
+            </ul>
+      </div>
+      <br>
+    <br>
+  </div>
+
+  <div class="column_home" id="left-col" align="center" style="background: none !important;">
+    <div class="parent" style="background: none !important;">
+        <p>Most common words : </p>
+          <ul align="left" style="background: none !important;">
+             {% for el in common_words_others %}
+                <li>{{el}}</li>
+              {% endfor %}
+          </ul>
+      </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="/static/js/hist_txt_perso.js"></script>
+<script type="text/javascript" src="/static/js/hist_txt_glob.js"></script>
+
+  <form style="background: none !important;">
+    <input type="button" value="Back" onclick="history.go(-1)">
+  </form>
+
+  {% endblock %}
+
+</body>
+</html>
